@@ -1,9 +1,13 @@
 import React from 'react';
+import Search from './Search';
 
 class App extends React.Component {
   render() {
     return (
-      <h1>React iTunes Search:</h1>
+      <div>
+        <h1>React iTunes Search:</h1>
+        <Search />
+      </div>
     );
   }
 }

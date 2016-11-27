@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import Browser from './Browser';
+import Browser from './browser';
 
 const rootReducer = combineReducers({
   Browser,
