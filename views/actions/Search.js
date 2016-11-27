@@ -3,16 +3,16 @@ import MEDIA from '../constants/Media';
 
 import { search as searchMusic } from './SearchMusic';
 
-export const searchStarted = (media) => ({
+export const searchStarted = params => ({
   type: ACTIONS.SEARCH.STARTED,
-  media,
+  params,
 });
 
-export const search = ({ media, ...rest }) => (dispatch) => {
-  dispatch(searchStarted(media));
-  switch (media) {
+export const search = params => (dispatch) => {
+  dispatch(searchStarted(params));
+  switch (params.media) {
     case MEDIA.MUSIC:
-      return dispatch(searchMusic(rest));
+      return dispatch(searchMusic(params));
     default:
       return false;
   }

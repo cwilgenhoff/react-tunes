@@ -3,47 +3,35 @@ import ENTITIES from '../constants/Entities';
 import MEDIA from '../constants/Media';
 import ApiClient from '../utils/ApiClient';
 
-export const searchByArtist = (term) => {
-  ApiClient.search({
-    term,
-    entity: ENTITIES.ARTIST,
-    media: MEDIA.MUSIC,
-  }).then(
-    (result) => { console.log(result); },
-    (error) => { console.log(error); }
-  );
-};
+export const searchResultSuccess = results => ({
+  type: ACTIONS.SEARCH.RESULT.SUCCESS,
+  results,
+})
 
-export const searchByAlbum = (term) => {
-  ApiClient.search({
-    term,
-    entity: ENTITIES.ALBUM,
-    media: MEDIA.MUSIC,
-  }).then(
-    (result) => { console.log(result); },
-    (error) => { console.log(error); }
-  );
-};
+export const searchResultFailure = results => ({
+  type: ACTIONS.SEARCH.RESULT.FAILURE,
+  results,
+})
 
-export const searchBySong = (term) => {
-  ApiClient.search({
+export const searchByEntity = (entity, term) => (dispatch) => {
+  return ApiClient.search({
     term,
-    entity: ENTITIES.SONG,
+    entity,
     media: MEDIA.MUSIC,
   }).then(
-    (result) => { console.log(result); },
-    (error) => { console.log(error); }
+    response => dispatch(searchResultSuccess(response.results)),
+    error => dispatch(searchResultFailure(error))
   );
 };
 
 export const search = ({ entity, term }) => (dispatch) => {
   switch (entity) {
     case ENTITIES.ARTIST:
-      return dispatch(searchByArtist(term));
+      return dispatch(searchByEntity(ENTITIES.ARTIST, term));
     case ENTITIES.ALBUM:
-      return dispatch(searchByAlbum(term));
+      return dispatch(searchByEntity(ENTITIES.ALBUM, term));
     case ENTITIES.SONG:
-      return dispatch(searchBySong(term));
+      return dispatch(searchByEntity(ENTITIES.SONG, term));
     default:
       return Promise.reject();
   }

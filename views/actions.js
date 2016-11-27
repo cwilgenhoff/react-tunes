@@ -6,10 +6,9 @@ const ACTIONS = {
   },
   SEARCH: {
     STARTED: 'STARTED',
-    MUSIC: {
-      ARTIST: 'ARTIST',
-      SONG: 'SONG',
-      ALBUM: 'ARTIST',
+    RESULT: {
+      SUCCESS: 'SUCCESS',
+      FAILURE: 'FAILURE',
     },
   },
 };
