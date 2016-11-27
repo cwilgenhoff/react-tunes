@@ -4,6 +4,14 @@ const ACTIONS = {
     UNREGISTER_EVENT_SUCCESS: 'UNREGISTER_EVENT_SUCCESS',
     UPDATE_VIEWPORT_SIZE: 'UPDATE_VIEWPORT_SIZE',
   },
+  SEARCH: {
+    STARTED: 'STARTED',
+    MUSIC: {
+      ARTIST: 'ARTIST',
+      SONG: 'SONG',
+      ALBUM: 'ARTIST',
+    },
+  },
 };
 
 export default ACTIONS;
