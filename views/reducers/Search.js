@@ -2,22 +2,36 @@ import ACTIONS from '../actions';
 
 const InitialState = {
   isSearching: false,
-  results: null,
+  results: [],
 };
 
 const SearchReducer = (state = InitialState, action) => {
   switch (action.type) {
-    case ACTIONS.SEARCH.STARTED:
+    case ACTIONS.SEARCH.SEARCH_STARTED:
       return {
         isSearching: true,
         query: action.params,
-        results: null,
+        results: [],
       };
-    case ACTIONS.SEARCH.RESULT.SUCCESS:
+    case ACTIONS.SEARCH.SEARCH_RESULT_SUCCESS:
       return {
         isSearching: false,
         query: state.query,
-        results: action.results,
+        results: [...action.results],
+      };
+    case ACTIONS.SEARCH.SEARCH_RESULT_FAILURE:
+      return {
+        ...state,
+        isSearching: false,
+      }
+    case ACTIONS.SEARCH.SEARCH_PARTIAL_RESULT_SUCCESS:
+      return {
+        isSearching: false,
+        query: state.query,
+        results: [
+          ...state.results,
+          ...action.results,
+        ],
       };
     default:
       return state;

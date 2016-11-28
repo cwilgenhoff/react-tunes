@@ -4,7 +4,7 @@ import MEDIA from '../constants/Media';
 import { search as searchMusic } from './SearchMusic';
 
 export const searchStarted = params => ({
-  type: ACTIONS.SEARCH.STARTED,
+  type: ACTIONS.SEARCH.SEARCH_STARTED,
   params,
 });
 
