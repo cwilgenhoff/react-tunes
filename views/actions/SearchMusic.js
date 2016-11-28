@@ -1,5 +1,6 @@
 import ACTIONS from '../actions';
 import ENTITIES from '../constants/Entities';
+import ATTRIBUTES from '../constants/Attributes';
 import MEDIA from '../constants/Media';
 import ApiClient from '../utils/ApiClient';
 
@@ -8,19 +9,15 @@ export const searchResultSuccess = results => ({
   results,
 });
 
-export const searchPartialResultSuccess = results => ({
-  type: ACTIONS.SEARCH.SEARCH_PARTIAL_RESULT_SUCCESS,
-  results,
-});
-
 export const searchResultFailure = results => ({
   type: ACTIONS.SEARCH.SEARCH_RESULT_FAILURE,
   results,
 });
 
-export const searchByEntity = (entity, term) => (dispatch) => {
+export const searchByAttribute = (attribute, entity, term) => (dispatch) => {
   return ApiClient.search({
     term,
+    attribute,
     entity,
     media: MEDIA.MUSIC,
   }).then(
@@ -29,43 +26,14 @@ export const searchByEntity = (entity, term) => (dispatch) => {
   );
 };
 
-export const searchAlbumsByArtistId = artistId => (dispatch) => {
-  return ApiClient.lookUp({
-    id: artistId,
-    entity: ENTITIES.ALBUM,
-  }).then(
-    response => dispatch(searchPartialResultSuccess(
-      response.results.filter(result => result.collectionType))
-    ),
-    error => dispatch(searchResultFailure(error))
-  );
-};
-
-export const searchAlbumsFromResults = results => (dispatch) => {
-  return results.forEach(({ artistId }) =>
-    dispatch(searchAlbumsByArtistId(artistId))
-  );
-};
-
-export const searchByArtist = term => (dispatch) => {
-  return ApiClient.search({
-    term,
-    entity: ENTITIES.ARTIST,
-    media: MEDIA.MUSIC,
-  }).then(
-    ({ results }) => dispatch(searchAlbumsFromResults(results)),
-    error => dispatch(searchResultFailure(error))
-  );
-};
-
-export const search = ({ entity, term }) => (dispatch) => {
-  switch (entity) {
-    case ENTITIES.ARTIST:
-      return dispatch(searchByArtist(term));
-    case ENTITIES.ALBUM:
-      return dispatch(searchByEntity(ENTITIES.ALBUM, term));
-    case ENTITIES.SONG:
-      return dispatch(searchByEntity(ENTITIES.SONG, term));
+export const search = ({ attribute, term }) => (dispatch) => {
+  switch (attribute) {
+    case ATTRIBUTES.ALBUM:
+      return dispatch(searchByAttribute(ATTRIBUTES.ALBUM, ENTITIES.ALBUM, term));
+    case ATTRIBUTES.SONG:
+      return dispatch(searchByAttribute(ATTRIBUTES.SONG, ENTITIES.SONG, term));
+    case ATTRIBUTES.ARTIST:
+      return dispatch(searchByAttribute(ATTRIBUTES.ARTIST, ENTITIES.ALL, term));
     default:
       return Promise.reject();
   }

@@ -1,7 +1,7 @@
 const ENTITIES = {
-  ARTIST: 'musicArtist',
   ALBUM: 'album',
   SONG: 'song',
+  ALL: 'album, song',
 };
 
 export default ENTITIES;

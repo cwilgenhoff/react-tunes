@@ -7,9 +7,13 @@ class ApiClient {
     this.searchLimit = 200;
   }
 
-  search({ media, entity, term }) {
+  static query = ({ media, entity, attribute, term }) => {
+    return `?media=${media}&term=${term.replace(' ', '+')}${entity ? `&entity=${entity}` : ''}${entity ? `&attribute=${attribute}` : ''}`;
+  }
+
+  search(params) {
     return reqwest({
-      url: `${this.searchEndpoint}?media=${media}&entity=${entity}&term=${term.replace(' ', '+')}&limit=${this.searchLimit}`,
+      url: `${this.searchEndpoint}${ApiClient.query(params)}&limit=${this.searchLimit}`,
       type: 'jsonp',
     });
   }

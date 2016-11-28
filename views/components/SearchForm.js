@@ -1,6 +1,6 @@
 import React from 'react';
 
-import ENTITIES from '../constants/Entities';
+import ATTRIBUTES from '../constants/Attributes';
 import MEDIA from '../constants/Media';
 
 class SearchForm extends React.Component {
@@ -8,7 +8,7 @@ class SearchForm extends React.Component {
     super(props);
     this.state = {
       term: '',
-      entity: ENTITIES.SONG,
+      attribute: ATTRIBUTES.ARTIST,
       media: MEDIA.MUSIC,
     };
   }
@@ -19,9 +19,9 @@ class SearchForm extends React.Component {
     });
   }
 
-  handleSearchEntityChange = (event) => {
+  handleSearchAttributeChange = (event) => {
     this.setState({
-      entity: event.target.value,
+      attribute: event.target.value,
     });
   }
 
@@ -33,13 +33,13 @@ class SearchForm extends React.Component {
     this.props.onSearch(this.state);
   }
 
-  entities = () => {
-    return _.keys(ENTITIES).map(entity =>
+  attributes = () => {
+    return _.keys(ATTRIBUTES).map(attribute =>
       <option
-        key={entity}
-        value={ENTITIES[entity]}
+        key={attribute}
+        value={ATTRIBUTES[attribute]}
       >
-        {_.capitalize(entity)}
+        {attribute.toUpperCase()}
       </option>
     );
   }
@@ -47,37 +47,38 @@ class SearchForm extends React.Component {
   render() {
     return (
       <form onSubmit={this.search} className="search__form">
-        <div className="form-group">
+        <div className="search__form__group">
           <input
             id="searchTerm"
             name="search[term]"
             type="text"
             className="search__form__input"
-            placeholder=""
+            placeholder="Search artist, album or songs..."
             onChange={this.handleSearchTermChange}
           />
         </div>
 
-        <div className="form-group">
-          <select
-            id="searchEntity"
-            name="search[entity]"
-            className="search__form__input"
-            onChange={this.handleSearchEntityChange}
-            value={this.state.entity}
-          >
-            { this.entities() }
-          </select>
+        <div className="search__form__group">
+          <div className="search__form__select">
+            <select
+              id="searchEntity"
+              name="search[entity]"
+              onChange={this.handleSearchAttributeChange}
+              value={this.state.attribute}
+            >
+              { this.attributes() }
+            </select>
+          </div>
         </div>
 
-        <div className="form-group">
+        <div className="search__form__group">
           <button
             type="submit"
             name="commit"
             id="search-form-submit"
             className="search__form__button"
           >
-            Search
+            SEARCH
           </button>
         </div>
       </form>

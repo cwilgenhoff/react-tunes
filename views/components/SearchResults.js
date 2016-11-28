@@ -4,9 +4,17 @@ import SearchResult from './SearchResult';
 
 const SearchResults = ({ results }) => {
   return (
-    <div className="search__results">
+    <div className="container-fluid">
       {
-        results.map(result => <SearchResult key={_.uniqueId()} {...result} />)
+        results.map(({ collectionName, trackName, artistName, artworkUrl100 }) =>
+          <SearchResult
+            key={_.uniqueId()}
+            collectionName={collectionName}
+            trackName={trackName}
+            artistName={artistName}
+            artworkUrl100={artworkUrl100}
+          />
+        )
       }
     </div>
   );
