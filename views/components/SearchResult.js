@@ -34,9 +34,11 @@ class SearchResult extends React.Component {
     }
 
     const { width } = size;
+    const style = { width, height: width };
     return (
       <div className="search__results__result__artwork">
         <img
+          style={style}
           src={this.props.artworkUrl100.replace('100x100bb', `${width}x${width}bb`)}
           alt={this.props.artistName}
         />
@@ -76,6 +78,30 @@ class SearchResult extends React.Component {
     );
   }
 
+  isAlbum = () => Boolean(this.props.collectionName && !this.props.trackName);
+
+  isSong = () => Boolean(this.props.collectionName && this.props.trackName);
+
+  tags = () => {
+    if (this.isAlbum()) {
+      return (
+        <span className="search__results__result__tags_tag search__results__result__tags__tag--album">
+          ALBUM
+        </span>
+      );
+    }
+
+    if (this.isSong()) {
+      return (
+        <span className="search__results__result__tags_tag search__results__result__tags__tag--song">
+          SONG
+        </span>
+      );
+    }
+
+    return false;
+  }
+
   render() {
     return (
       <div className="col-xs-3 search__results__result">
@@ -84,6 +110,9 @@ class SearchResult extends React.Component {
           {this.artist()}
           {this.album()}
           {this.song()}
+          <div className="search__results__result__tags">
+            {this.tags()}
+          </div>
         </div>
       </div>
     );

@@ -1,3 +1,5 @@
+import { searchResultInfo } from './Search';
+
 import ACTIONS from '../actions';
 import ENTITIES from '../constants/Entities';
 import ATTRIBUTES from '../constants/Attributes';
@@ -21,7 +23,13 @@ export const searchByAttribute = (attribute, entity, term) => (dispatch) => {
     entity,
     media: MEDIA.MUSIC,
   }).then(
-    response => dispatch(searchResultSuccess(response.results)),
+    (response) => {
+      if (response.results.length > 0) {
+        return dispatch(searchResultSuccess(response.results));
+      }
+
+      return dispatch(searchResultInfo('No results have been found.'));
+    },
     error => dispatch(searchResultFailure(error))
   );
 };

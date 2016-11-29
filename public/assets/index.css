@@ -3,6 +3,18 @@ body {
     font-size: 11px;
 }
 
+.rt-button {
+    background-color: #1a1a1a;
+    border: none;
+    color: #fff;
+    padding: 10px 0;
+    width: 120px;
+}
+
+.search {
+    margin: 10px;
+}
+
 .search__header {
     background: #1a1a1a;
     color: #fff;
@@ -10,8 +22,9 @@ body {
 }
 
 .search__form {
-    width: 100%;
-    text-align: center;
+    text-align: right;
+    margin-bottom: 15px;
+    display: block;
 }
 
 .search__form__group {
@@ -23,7 +36,7 @@ body {
     border: 1px solid #1a1a1a;
     color: #1a1a1a;
     margin-right: 8px;
-    line-height: 29px;
+    height: 35px;
     width: 250px;
     padding-left: 5px;
 }
@@ -33,7 +46,7 @@ body {
     width: 150px;
     margin-right: 8px;
     background-color: #fff;
-    height: 31px;
+    height: 35px;
 }
 
 .search__form__select select {
@@ -56,11 +69,20 @@ body {
     background-color: #1a1a1a;
     border: none;
     color: #fff;
-    padding: 10px 30px;
+    padding: 10px 0;
+    width: 120px;
+}
+
+.search__form__select:focus {
+    outline: none;
+}
+
+.search__results__result {
+    margin-bottom: 10px;
 }
 
 .search__results__result__description {
-    height: 50px;
+    height: 60px;
 }
 
 .search__results__result__artwork {
@@ -74,10 +96,31 @@ body {
     margin-top: 5px;
 }
 
-.search__results__result__album {
-    display: block;
-}
-
+.search__results__result__album,
 .search__results__result__song {
     display: block;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.search__results__result__tags {
+    display: block;
+    margin-top: 2px;
+}
+
+.search__results__result__tags_tag {
+    padding: 4px;
+    font-weight: bold;
+    color: white;
+    font-size: 9px;
+}
+
+.search__results__result__tags__tag--album {
+    background: #7cb82f;
+}
+
+.search__results__result__tags__tag--song {
+    background: #dd5143;
 }

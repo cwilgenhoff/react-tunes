@@ -15,20 +15,32 @@ class Search extends React.Component {
   }
   onSearch = params => this.props.dispatch(search(params));
 
-  page = () => this.props.results.slice(
-    0, (this.state.page * this.state.perPage) + this.state.perPage
-  );
+  page = () => {
+    const { results } = this.props;
+    const { page, perPage } = this.state;
+    return results.slice(0, (page * perPage) + perPage);
+  }
 
-  showMore = () => this.setState({
-    page: this.state.page + 1,
-  })
+  onShowMore = () => {
+    this.setState({
+      page: this.state.page + 1,
+    });
+  }
 
   render() {
     return (
-      <div>
-        <SearchForm onSearch={this.onSearch} />
-        <SearchResults results={this.page()} />
-        <button onClick={this.showMore}>showMore -></button>
+      <div className="search">
+        <div className="container-fluid">
+          <SearchForm
+            isSearching={this.props.isSearching}
+            onSearch={this.onSearch}
+          />
+          <SearchResults
+            results={this.page()}
+            onShowMore={this.onShowMore}
+            info={this.props.info}
+          />
+        </div>
       </div>
     );
   }
@@ -37,8 +49,12 @@ class Search extends React.Component {
 Search.propTypes = {
   dispatch: React.PropTypes.func.isRequired,
   results: React.PropTypes.array.isRequired,
+  isSearching: React.PropTypes.bool.isRequired,
+  info: React.PropTypes.string,
 };
 
 export default connect(store => ({
   results: store.Search.results,
+  info: store.Search.info,
+  isSearching: store.Search.isSearching,
 }))(Search);

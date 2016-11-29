@@ -8,6 +8,11 @@ export const searchStarted = params => ({
   params,
 });
 
+export const searchResultInfo = info => ({
+  type: ACTIONS.SEARCH.SEARCH_RESULT_INFO,
+  info,
+});
+
 export const search = params => (dispatch) => {
   dispatch(searchStarted(params));
   switch (params.media) {
