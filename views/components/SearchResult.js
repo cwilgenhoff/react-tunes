@@ -36,7 +36,7 @@ class SearchResult extends React.Component {
     const { width } = size;
     const style = { width, height: width };
     return (
-      <div className="search__results__result__artwork">
+      <div className="rt-fade-in search__results__result__artwork">
         <img
           style={style}
           src={this.props.artworkUrl100.replace('100x100bb', `${width}x${width}bb`)}
@@ -52,7 +52,7 @@ class SearchResult extends React.Component {
     }
 
     return (
-      <span className="search__results__result__album">
+      <span className="search__results__result__album" title={this.props.collectionName}>
         {this.props.collectionName}
       </span>
     );
@@ -64,7 +64,7 @@ class SearchResult extends React.Component {
     }
 
     return (
-      <span className="search__results__result__song">
+      <span className="search__results__result__song" title={this.props.trackName}>
         {this.props.trackName}
       </span>
     );
@@ -72,7 +72,7 @@ class SearchResult extends React.Component {
 
   artist = () => {
     return (
-      <span className="search__results__result__artist">
+      <span className="search__results__result__artist" title={this.props.artistName}>
         {this.props.artistName.toUpperCase()}
       </span>
     );
@@ -82,36 +82,50 @@ class SearchResult extends React.Component {
 
   isSong = () => Boolean(this.props.collectionName && this.props.trackName);
 
-  tags = () => {
-    if (this.isAlbum()) {
-      return (
-        <span className="search__results__result__tags_tag search__results__result__tags__tag--album">
-          ALBUM
-        </span>
-      );
+  likeTag = () => {
+    return (
+      <a className="search__results__result__tags_tag search__results__result__tags__tag--like">
+        + LIKE
+      </a>
+    );
+  }
+
+  albumTag = () => {
+    if (!this.isAlbum()) {
+      return false;
     }
 
-    if (this.isSong()) {
-      return (
-        <span className="search__results__result__tags_tag search__results__result__tags__tag--song">
-          SONG
-        </span>
-      );
+    return (
+      <span className="search__results__result__tags_tag search__results__result__tags__tag--album">
+        ALBUM
+      </span>
+    );
+  }
+
+  songTag = () => {
+    if (!this.isSong()) {
+      return false;
     }
 
-    return false;
+    return (
+      <span className="search__results__result__tags_tag search__results__result__tags__tag--song">
+        SONG
+      </span>
+    );
   }
 
   render() {
     return (
-      <div className="col-xs-3 search__results__result">
+      <div className="col-xs-12 col-md-3 search__results__result">
         {this.artwork()}
         <div className="search__results__result__description">
           {this.artist()}
           {this.album()}
           {this.song()}
           <div className="search__results__result__tags">
-            {this.tags()}
+            {this.albumTag()}
+            {this.songTag()}
+            {this.likeTag()}
           </div>
         </div>
       </div>
