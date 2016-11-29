@@ -11,20 +11,47 @@ class Search extends React.Component {
     this.state = {
       page: 0,
       perPage: 10,
+      totalPages: 0,
     };
   }
-  onSearch = params => this.props.dispatch(search(params));
 
-  page = () => {
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.results.length !== this.props.results.length) {
+      this.setState({
+        totalPages: Math.floor(nextProps.results.length / this.state.perPage),
+      });
+    }
+  }
+
+  onSearch = (params) => {
+    this.props.dispatch(search(params));
+    this.setState({ page: 0 });
+  }
+
+  onShowMore = () => {
+    if (this.state.page < this.state.totalPages) {
+      this.setState({
+        page: this.state.page + 1,
+      });
+    }
+  }
+
+  resultsForCurrentPage = () => {
     const { results } = this.props;
     const { page, perPage } = this.state;
     return results.slice(0, (page * perPage) + perPage);
   }
 
-  onShowMore = () => {
-    this.setState({
-      page: this.state.page + 1,
-    });
+  welcomeMessage = () => {
+    if (this.props.hasSearched) {
+      return false;
+    }
+
+    return (
+      <p className="search__message">
+        Welcome! Please, feel free to search about your favourite artist, album or song.
+      </p>
+    );
   }
 
   render() {
@@ -35,10 +62,13 @@ class Search extends React.Component {
             isSearching={this.props.isSearching}
             onSearch={this.onSearch}
           />
+          {this.welcomeMessage()}
           <SearchResults
-            results={this.page()}
+            results={this.resultsForCurrentPage()}
             onShowMore={this.onShowMore}
-            info={this.props.info}
+            hasSearched={this.props.hasSearched}
+            isSearching={this.props.isSearching}
+            resultsMessage={this.props.resultsMessage}
           />
         </div>
       </div>
@@ -50,11 +80,13 @@ Search.propTypes = {
   dispatch: React.PropTypes.func.isRequired,
   results: React.PropTypes.array.isRequired,
   isSearching: React.PropTypes.bool.isRequired,
-  info: React.PropTypes.string,
+  hasSearched: React.PropTypes.bool.isRequired,
+  resultsMessage: React.PropTypes.string,
 };
 
 export default connect(store => ({
   results: store.Search.results,
-  info: store.Search.info,
+  hasSearched: store.Search.hasSearched,
   isSearching: store.Search.isSearching,
+  resultsMessage: store.Search.resultsMessage,
 }))(Search);

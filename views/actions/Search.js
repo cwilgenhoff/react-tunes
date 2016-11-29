@@ -8,8 +8,8 @@ export const searchStarted = params => ({
   params,
 });
 
-export const searchResultInfo = info => ({
-  type: ACTIONS.SEARCH.SEARCH_RESULT_INFO,
+export const searchResultMessage = info => ({
+  type: ACTIONS.SEARCH.SEARCH_RESULT_MESSAGE,
   info,
 });
 

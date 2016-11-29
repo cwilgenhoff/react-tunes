@@ -2,10 +2,9 @@ import React from 'react';
 import _ from 'lodash';
 import SearchResult from './SearchResult';
 
-const SearchResults = ({ results, info, onShowMore }) => {
+const SearchResults = ({ results, resultsMessage, onShowMore, isSearching }) => {
   return (
     <div>
-      <p className="text-center">{info}</p>
       <div className="row">
         {
           results.map(({ collectionName, trackName, artistName, artworkUrl100 }) =>
@@ -20,27 +19,30 @@ const SearchResults = ({ results, info, onShowMore }) => {
         }
       </div>
       <div className="row">
-        {
-          !info ?
-            <div className="col-xs-12 text-center">
-              {
-                results.length > 0 ?
-                  <button className="rt-button" onClick={onShowMore}>SHOW MORE</button> :
-                  <p>
-                    Welcome! Please, feel free to search about your favourite artist, album or song.
-                  </p>
-              }
-            </div> : false
-        }
+        <div className="col-xs-12 text-center">
+          {
+            results.length === 0 && resultsMessage ?
+              <p className="search__message">{resultsMessage}</p> : false
+          }
+          {
+            results.length === 0 && isSearching ?
+              <p className="search__message">Searching...</p> : false
+          }
+          {
+            results.length > 0 ?
+              <button className="rt-button search__results__show-more" onClick={onShowMore}>SHOW MORE</button> : false
+          }
+        </div>
       </div>
     </div>
   );
 };
 
 SearchResults.propTypes = {
-  onShowMore: React.PropTypes.func.isRequired,
   results: React.PropTypes.array.isRequired,
-  info: React.PropTypes.string,
+  onShowMore: React.PropTypes.func.isRequired,
+  isSearching: React.PropTypes.bool.isRequired,
+  resultsMessage: React.PropTypes.string,
 };
 
 export default SearchResults;

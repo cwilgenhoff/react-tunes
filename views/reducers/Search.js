@@ -2,7 +2,8 @@ import ACTIONS from '../actions';
 
 const InitialState = {
   isSearching: false,
-  info: '',
+  hasSearched: false,
+  resultsMessage: '',
   results: [],
 };
 
@@ -11,20 +12,21 @@ const SearchReducer = (state = InitialState, action) => {
     case ACTIONS.SEARCH.SEARCH_STARTED:
       return {
         isSearching: true,
+        hasSearched: true,
         query: action.params,
         info: '',
         results: [],
       };
-    case ACTIONS.SEARCH.SEARCH_RESULT_INFO:
+    case ACTIONS.SEARCH.SEARCH_RESULT_MESSAGE:
       return {
         ...state,
         isSearching: false,
-        info: action.info,
+        resultsMessage: action.info,
       };
     case ACTIONS.SEARCH.SEARCH_RESULT_SUCCESS:
       return {
+        ...state,
         isSearching: false,
-        query: state.query,
         results: [...action.results],
       };
     case ACTIONS.SEARCH.SEARCH_RESULT_FAILURE:

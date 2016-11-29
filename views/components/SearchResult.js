@@ -82,10 +82,10 @@ class SearchResult extends React.Component {
 
   isSong = () => Boolean(this.props.collectionName && this.props.trackName);
 
-  likeTag = () => {
+  favouriteTag = () => {
     return (
       <a className="search__results__result__tags_tag search__results__result__tags__tag--like">
-        + LIKE
+        + FAVOURITE
       </a>
     );
   }
@@ -116,7 +116,7 @@ class SearchResult extends React.Component {
 
   render() {
     return (
-      <div className="col-xs-12 col-md-3 search__results__result">
+      <div className="col-xs-12 col-sm-3 col-md-3 search__results__result">
         {this.artwork()}
         <div className="search__results__result__description">
           {this.artist()}
@@ -125,7 +125,7 @@ class SearchResult extends React.Component {
           <div className="search__results__result__tags">
             {this.albumTag()}
             {this.songTag()}
-            {this.likeTag()}
+            {this.favouriteTag()}
           </div>
         </div>
       </div>

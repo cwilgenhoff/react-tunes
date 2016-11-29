@@ -1,4 +1,4 @@
-import { searchResultInfo } from './Search';
+import { searchResultMessage } from './Search';
 
 import ACTIONS from '../actions';
 import ENTITIES from '../constants/Entities';
@@ -28,7 +28,7 @@ export const searchByAttribute = (attribute, entity, term) => (dispatch) => {
         return dispatch(searchResultSuccess(response.results));
       }
 
-      return dispatch(searchResultInfo('No results have been found.'));
+      return dispatch(searchResultMessage('No results have been found.'));
     },
     error => dispatch(searchResultFailure(error))
   );
