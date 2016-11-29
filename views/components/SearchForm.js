@@ -57,6 +57,7 @@ class SearchForm extends React.Component {
                 className="search__form__input"
                 placeholder="Search artist, album or songs..."
                 onChange={this.handleSearchTermChange}
+                required
               />
             </div>
 

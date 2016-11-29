@@ -5,7 +5,7 @@ import SearchResult from './SearchResult';
 const SearchResults = ({ results, info, onShowMore }) => {
   return (
     <div>
-      <p>{info}</p>
+      <p className="text-center">{info}</p>
       <div className="row">
         {
           results.map(({ collectionName, trackName, artistName, artworkUrl100 }) =>
@@ -18,18 +18,20 @@ const SearchResults = ({ results, info, onShowMore }) => {
             />
           )
         }
-        <div className="clearfix"></div>
       </div>
       <div className="row">
-        <div className="col-xs-12 text-center">
-          {
-            results.length > 0 ?
-              <button className="rt-button" onClick={onShowMore}>SHOW MORE</button> :
-              <p>
-                Welcome! Please, feel free to search about your favourite artist, album or song.
-              </p>
-          }
-        </div>
+        {
+          !info ?
+            <div className="col-xs-12 text-center">
+              {
+                results.length > 0 ?
+                  <button className="rt-button" onClick={onShowMore}>SHOW MORE</button> :
+                  <p>
+                    Welcome! Please, feel free to search about your favourite artist, album or song.
+                  </p>
+              }
+            </div> : false
+        }
       </div>
     </div>
   );
