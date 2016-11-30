@@ -1,23 +1,13 @@
-import React from 'react';
 import _ from 'lodash';
-import SearchResult from './SearchResult';
+import React from 'react';
+import Tile from './Tile';
 
 const SearchResults = ({ results, resultsMessage, onShowMore, isSearching }) => {
   return (
     <div>
       <div className="row">
         {
-          results.map(({ collectionType, collectionName, kind, trackName, artistName, artworkUrl100 }) =>
-            <SearchResult
-              key={_.uniqueId()}
-              kind={kind}
-              collectionType={collectionType}
-              collectionName={collectionName}
-              trackName={trackName}
-              artistName={artistName}
-              artworkUrl100={artworkUrl100}
-            />
-          )
+          results.map(result => <Tile key={_.uniqueId()} {...result} />)
         }
       </div>
       <div className="row">
