@@ -2,7 +2,7 @@ import React from 'react';
 
 const TileDetails = ({ collectionName, trackName, artistName }) => {
   return (
-    <div>
+    <div className="search__results__result__description">
       {
         artistName ?
           <span className="search__results__result__artist" title={artistName}>

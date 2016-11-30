@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import SearchForm from '../components/SearchForm';
 import SearchResults from '../components/SearchResults';
+import FavouritesHelper from '../helpers/Favourites';
 import { search } from '../actions/Search';
 
 class Search extends React.Component {
@@ -84,9 +85,13 @@ Search.propTypes = {
   resultsMessage: React.PropTypes.string,
 };
 
-export default connect(store => ({
-  results: store.Search.results,
-  hasSearched: store.Search.hasSearched,
-  isSearching: store.Search.isSearching,
-  resultsMessage: store.Search.resultsMessage,
-}))(Search);
+export default connect((store) => {
+  const favouritesHelper = new FavouritesHelper(store.Favourites);
+  return {
+    results: favouritesHelper.sort(store.Search.results),
+    hasSearched: store.Search.hasSearched,
+    isSearching: store.Search.isSearching,
+    resultsMessage: store.Search.resultsMessage,
+  };
+}
+)(Search);

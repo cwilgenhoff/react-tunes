@@ -7,7 +7,7 @@ const SearchResults = ({ results, resultsMessage, onShowMore, isSearching }) => 
     <div>
       <div className="row">
         {
-          results.map(result => <Tile key={_.uniqueId()}  mediaElement={result} />)
+          results.map(result => <Tile key={_.uniqueId()} mediaElement={result} />)
         }
       </div>
       <div className="row">

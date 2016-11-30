@@ -9,7 +9,7 @@ const Tile = ({ mediaElement }) => {
   return (
     <div className="col-xs-12 col-sm-3 col-md-3 search__results__result">
       <TileArtwork artworkUrl={mediaElement.artworkUrl100} />
-      <div className="search__results__result__description">
+      <div>
         <TileDetails
           artistName={mediaElement.artistName}
           collectionName={mediaElement.collectionName}
