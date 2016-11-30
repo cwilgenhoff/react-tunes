@@ -1,7 +1,7 @@
 import ACTIONS from '../actions';
 
 const InitialState = {
-  size: {},
+  measurements: {},
   events: [],
 };
 
@@ -9,9 +9,10 @@ const BrowserReducer = (state = InitialState, action) => {
   switch (action.type) {
     case ACTIONS.BROWSER.REGISTER_EVENT_SUCCESS:
       return {
-        size: state.size,
+        measurements: { ...state.measurements },
         events: [
-          ...state.events, {
+          ...state.events,
+          {
             event: action.event,
             registered: true,
           },
@@ -19,21 +20,22 @@ const BrowserReducer = (state = InitialState, action) => {
       };
     case ACTIONS.BROWSER.UNREGISTER_EVENT_SUCCESS:
       return {
-        size: state.size,
+        measurements: { ...state.measurements },
         events: [
-          ...state.events, {
+          ...state.events,
+          {
             event: action.event,
             registered: false,
           },
         ],
       };
-    case ACTIONS.BROWSER.UPDATE_VIEWPORT_SIZE:
+    case ACTIONS.BROWSER.MEASURE_RENDERED_ELEMENT_SUCCESS:
       return {
-        ...state,
-        size: {
-          width: action.size.width,
-          height: action.size.height,
+        measurements: {
+          ...state.measurements,
+          [`${action.measurement.className}`]: action.measurement,
         },
+        events: [...state.events],
       };
     default:
       return state;

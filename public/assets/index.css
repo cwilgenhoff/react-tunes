@@ -1,0 +1,158 @@
+body {
+    font-family: Arial;
+    font-size: 14px;
+}
+
+.rt-fade-in {
+    transition: opacity .25s ease-in;
+    -moz-transition: opacity .25s ease-in;
+    -webkit-transition: opacity .25s ease-in;
+}
+
+.rt-fade-in:hover {
+    opacity: 0.5;
+}
+
+.rt-button {
+    border: 1px solid #1a1a1a;
+    background-color: #1a1a1a;
+    color: #fff;
+    height: 35px;
+    width: 120px;
+}
+
+.rt-button:hover {
+    color: #1a1a1a;
+    background-color: #fff;
+    border: 1px solid #1a1a1a;
+}
+
+.search {
+    margin: 10px;
+}
+
+.search__header {
+    background: #1a1a1a;
+    color: #fff;
+    text-align: center;
+}
+
+.search__message {
+    font-size: 16px;
+    text-align: center;
+}
+
+.search__form {
+    text-align: right;
+    margin-bottom: 15px;
+    display: block;
+}
+
+.search__form__group {
+    display: inline-block;
+}
+
+.search__form__input {
+    background-color: #fff;
+    border: 1px solid #1a1a1a;
+    color: #1a1a1a;
+    margin-right: 8px;
+    height: 35px;
+    width: 250px;
+    padding-left: 5px;
+}
+
+.search__form__select {
+    border: 1px solid #1a1a1a;
+    width: 150px;
+    margin-right: 8px;
+    background-color: #fff;
+    height: 35px;
+}
+
+.search__form__select select {
+    width: 100%;
+    height: 100%;
+    padding-left: 5px;
+    border: none;
+    box-shadow: none;
+    background: transparent none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.search__form__select select:focus {
+    outline: none;
+}
+
+.search__form__select:focus {
+    outline: none;
+}
+
+.search__results__show-more {
+    margin: 40px 0;
+    font-size: 16px;
+}
+
+.search__results__result {
+    margin-bottom: 40px;
+}
+
+.search__results__result__description {
+    height: 60px;
+}
+
+.search__results__result__artwork {
+    width: 100%;
+}
+
+.search__results__result__artist {
+    font-weight: bold;
+    color: #8b8b8b;
+    margin-top: 5px;
+}
+
+.search__results__result__artist,
+.search__results__result__album,
+.search__results__result__song {
+    display: block;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.search__results__result__tags {
+    display: flex;
+    margin-top: 2px;
+    justify-content: space-between;
+}
+
+.search__results__result__tags_tag {
+    padding: 3px;
+    font-weight: bold;
+    color: #fff;
+    font-size: 10px;
+}
+
+.search__results__result__tags__tag--album {
+    background: #7cb82f;
+    border: 1px solid #7cb82f;
+}
+
+.search__results__result__tags__tag--song {
+    background: #dd5143;
+    border: 1px solid #dd5143;
+}
+
+.search__results__result__tags__tag--like {
+    background: #00a0dc;
+    border: 1px solid #00a0dc;
+    cursor: pointer;
+}
+
+.search__results__result__tags__tag--like:hover {
+    color: #00a0dc;
+    background: #fff;
+}
