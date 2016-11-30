@@ -24,10 +24,10 @@ export const toggleFavouriteSong = id => (dispatch, getState) => {
   const { songs } = getState().Favourites;
   const isFavourite = songs.includes(id);
   if (isFavourite) {
-    return dispatch(addFavouriteSong(id));
+    return dispatch(removeFavouriteSong(id));
   }
 
-  return dispatch(removeFavouriteSong(id));
+  return dispatch(addFavouriteSong(id));
 };
 
 export const toggleFavouriteAlbum = id => (dispatch, getState) => {
