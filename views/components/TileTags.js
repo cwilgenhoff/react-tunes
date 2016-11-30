@@ -1,16 +1,17 @@
 import React from 'react';
+import WRAPPERS from '../constants/Wrappers';
 
 const TileTags = ({ wrapperType }) => {
   return (
     <div>
       {
-        wrapperType === 'collection' ?
+        wrapperType === WRAPPERS.ALBUM ?
           <span className="search__results__result__tags_tag search__results__result__tags__tag--album">
             ALBUM
           </span> : false
       }
       {
-        wrapperType === 'track' ?
+        wrapperType === WRAPPERS.SONG ?
           <span className="search__results__result__tags_tag search__results__result__tags__tag--song">
             SONG
           </span> : false
