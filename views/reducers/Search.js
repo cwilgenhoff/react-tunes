@@ -21,7 +21,7 @@ const SearchReducer = (state = InitialState, action) => {
       return {
         ...state,
         isSearching: false,
-        resultsMessage: action.info,
+        resultsMessage: action.message,
       };
     case ACTIONS.SEARCH.SEARCH_RESULT_SUCCESS:
       return {

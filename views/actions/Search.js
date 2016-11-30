@@ -8,9 +8,9 @@ export const searchStarted = params => ({
   params,
 });
 
-export const searchResultMessage = info => ({
+export const searchResultMessage = message => ({
   type: ACTIONS.SEARCH.SEARCH_RESULT_MESSAGE,
-  info,
+  message,
 });
 
 export const search = params => (dispatch) => {
