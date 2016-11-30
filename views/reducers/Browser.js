@@ -2,7 +2,7 @@ import ACTIONS from '../actions';
 
 const InitialState = {
   measurements: {},
-  events: [],
+  events: {},
 };
 
 const BrowserReducer = (state = InitialState, action) => {
@@ -10,24 +10,18 @@ const BrowserReducer = (state = InitialState, action) => {
     case ACTIONS.BROWSER.REGISTER_EVENT_SUCCESS:
       return {
         measurements: { ...state.measurements },
-        events: [
+        events: {
           ...state.events,
-          {
-            event: action.event,
-            registered: true,
-          },
-        ],
+          [`${action.event.componentName}-${action.event.eventName}`]: true,
+        },
       };
     case ACTIONS.BROWSER.UNREGISTER_EVENT_SUCCESS:
       return {
         measurements: { ...state.measurements },
-        events: [
+        events: {
           ...state.events,
-          {
-            event: action.event,
-            registered: false,
-          },
-        ],
+          [`${action.event.componentName}-${action.event.eventName}`]: false,
+        },
       };
     case ACTIONS.BROWSER.MEASURE_RENDERED_ELEMENT_SUCCESS:
       return {
@@ -35,7 +29,7 @@ const BrowserReducer = (state = InitialState, action) => {
           ...state.measurements,
           [`${action.measurement.className}`]: action.measurement,
         },
-        events: [...state.events],
+        events: { ...state.events },
       };
     default:
       return state;

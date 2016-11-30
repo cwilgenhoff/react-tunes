@@ -49,12 +49,22 @@ export const measureRenderedElementByClassName = className => (dispatch, getStat
   }));
 };
 
-export const addEventListener = (componentName, eventName, handler) => {
+export const addEventListener = (componentName, eventName, handler) => (dispatch, getState) => {
+  const { events } = getState().Browser;
+  if (events[`${componentName}-${eventName}`]) {
+    return false;
+  }
+
   window.addEventListener(eventName, handler);
-  return registerEventSuccess(eventName);
+  return dispatch(registerEventSuccess({ componentName, eventName }));
 };
 
 export const removeEventListener = (componentName, eventName, handler) => {
+  const { events } = getState().Browser;
+  if (!events[`${componentName}-${eventName}`]) {
+    return false;
+  }
+
   window.removeEventListener(eventName, handler);
-  return unregisterEventSuccess(eventName);
+  return dispatch(unregisterEventSuccess({ componentName, eventName }));
 };

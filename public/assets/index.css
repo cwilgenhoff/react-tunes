@@ -146,13 +146,13 @@ body {
     border: 1px solid #dd5143;
 }
 
-.search__results__result__tags__tag--like {
+.search__results__result__tags__tag--favourite {
     background: #00a0dc;
     border: 1px solid #00a0dc;
     cursor: pointer;
 }
 
-.search__results__result__tags__tag--like:hover {
+.search__results__result__tags__tag--favourite:hover {
     color: #00a0dc;
     background: #fff;
 }
