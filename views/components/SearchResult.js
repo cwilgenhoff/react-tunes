@@ -1,10 +1,19 @@
 import React from 'react';
 import { connect } from 'react-redux';
+
 import {
   addEventListener,
   removeEventListener,
   measureRenderedElementByClassName,
 } from '../actions/Browser';
+
+import {
+  addFavouriteSong,
+  addFavouriteAlbum,
+  removeFavouriteSong,
+  removeFavouriteAlbum
+} from '../actions/Favourites';
+
 
 class SearchResult extends React.Component {
   constructor(props) {
@@ -78,15 +87,24 @@ class SearchResult extends React.Component {
     );
   }
 
-  isAlbum = () => Boolean(this.props.collectionName && !this.props.trackName);
+  isAlbum = () => this.props.collectionType && this.props.collectionType === 'Album';
 
-  isSong = () => Boolean(this.props.collectionName && this.props.trackName);
+  isSong = () => this.props.kind && this.props.kind === 'song';
+
+  addOrRemoveFavourite = () => {
+    if (this.isSong()) {
+      this.props.dispatch()
+    }
+  }
 
   favouriteTag = () => {
     return (
-      <a className="search__results__result__tags_tag search__results__result__tags__tag--like">
+      <button
+        className="search__results__result__tags_tag search__results__result__tags__tag--like"
+        onClick={this.addOrRemoveFavourite}
+      >
         + FAVOURITE
-      </a>
+      </button>
     );
   }
 
@@ -135,11 +153,13 @@ class SearchResult extends React.Component {
 
 SearchResult.propTypes = {
   dispatch: React.PropTypes.func.isRequired,
-  artistName: React.PropTypes.string.isRequired,
   artworkUrl100: React.PropTypes.string.isRequired,
-  measurements: React.PropTypes.object,
-  trackName: React.PropTypes.string,
+  artistName: React.PropTypes.string.isRequired,
   collectionName: React.PropTypes.string,
+  trackName: React.PropTypes.string,
+  collectionType: React.PropTypes.string,
+  kind: React.PropTypes.string,
+  measurements: React.PropTypes.object,
 };
 
 export default connect((store) => {

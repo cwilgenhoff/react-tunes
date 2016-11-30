@@ -7,9 +7,11 @@ const SearchResults = ({ results, resultsMessage, onShowMore, isSearching }) => 
     <div>
       <div className="row">
         {
-          results.map(({ collectionName, trackName, artistName, artworkUrl100 }) =>
+          results.map(({ collectionType, collectionName, kind, trackName, artistName, artworkUrl100 }) =>
             <SearchResult
               key={_.uniqueId()}
+              kind={kind}
+              collectionType={collectionType}
               collectionName={collectionName}
               trackName={trackName}
               artistName={artistName}
