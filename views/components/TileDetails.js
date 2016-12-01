@@ -2,22 +2,22 @@ import React from 'react';
 
 const TileDetails = ({ collectionName, trackName, artistName }) => {
   return (
-    <div className="search__results__result__description">
+    <div className="tile__details">
       {
         artistName ?
-          <span className="search__results__result__artist" title={artistName}>
+          <span className="tile__details__artist" title={artistName}>
             {artistName.toUpperCase()}
           </span> : false
       }
       {
         collectionName ?
-          <span className="search__results__result__album" title={collectionName}>
+          <span className="tile__details__album" title={collectionName}>
             {collectionName}
           </span> : false
       }
       {
         trackName ?
-          <span className="search__results__result__song" title={trackName}>
+          <span className="tile__details__song" title={trackName}>
             {trackName}
           </span> : false
       }

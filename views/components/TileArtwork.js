@@ -23,11 +23,11 @@ class TileArtwork extends React.Component {
   }
 
   measureArtworkWidth = () => {
-    this.props.dispatch(measureRenderedElementByClassName('search__results__result__artwork'));
+    this.props.dispatch(measureRenderedElementByClassName('tile__artwork'));
   }
 
   image = () => {
-    const { search__results__result__artwork: size } = this.props.measurements;
+    const { tile__artwork: size } = this.props.measurements;
     if (!size) {
       return false;
     }
@@ -45,7 +45,7 @@ class TileArtwork extends React.Component {
 
   render() {
     return (
-      <div className="rt-fade-in search__results__result__artwork">
+      <div className="rt-fade-out tile__artwork">
         {this.image()}
       </div>
     );

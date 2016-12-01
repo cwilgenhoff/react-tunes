@@ -2,6 +2,8 @@ import _ from 'lodash';
 import React from 'react';
 import Tile from './Tile';
 
+import Style from '../styles/SearchResults.scss';
+
 const SearchResults = ({ results, resultsMessage, onShowMore, isSearching }) => {
   return (
     <div>
