@@ -1,3 +1,5 @@
+@import 'Variables';
+
 .search {
   margin: 10px;
 
@@ -13,6 +15,11 @@
 
     &__group {
       display: inline-block;
+
+      @media screen and (max-width: #{$small-screen-width-max}) {
+        display: block;
+        margin: 0 0 8px;
+      }
     }
 
     &__input {
@@ -23,14 +30,24 @@
       height: 35px;
       width: 250px;
       padding-left: 5px;
+
+      @media screen and (max-width: #{$small-screen-width-max}) {
+        margin: 0;
+        width: 100%;
+      }
     }
 
     &__select {
+      display: inline-block;
       border: 1px solid #1a1a1a;
-      width: 150px;
+      width: 120px;
       margin-right: 8px;
       background-color: #fff;
       height: 35px;
+
+      @media screen and (max-width: #{$small-screen-width-max}) {
+        margin: 0;
+      }
 
       & select {
         width: 100%;
@@ -47,6 +64,10 @@
           outline: none;
         }
       }
+    }
+
+    &__submit {
+
     }
   }
 }
