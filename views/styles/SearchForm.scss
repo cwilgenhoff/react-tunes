@@ -42,7 +42,10 @@
       border: 1px solid #1a1a1a;
       width: 120px;
       margin-right: 8px;
-      background-color: #fff;
+      background: #fff url('/assets/chevron-down.svg') no-repeat;
+      background-position-x: 90%;
+      background-position-y: 50%;
+      background-size: 12%;
       height: 35px;
 
       @media screen and (max-width: #{$small-screen-width-max}) {
