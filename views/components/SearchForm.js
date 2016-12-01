@@ -3,6 +3,9 @@ import React from 'react';
 import ATTRIBUTES from '../constants/Attributes';
 import MEDIA from '../constants/Media';
 
+import Style from '../styles/SearchForm.scss';
+
+
 class SearchForm extends React.Component {
   constructor(props) {
     super(props);

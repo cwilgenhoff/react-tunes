@@ -3,7 +3,7 @@ import React from 'react';
 const TileFavouriteButton = ({ onToggleFavourite, isFavourite }) => {
   return (
     <button
-      className="search__results__result__tags_tag search__results__result__tags__tag--favourite"
+      className="tile__tags__tag tile__tags__tag--favourite"
       onClick={onToggleFavourite}
     >
       { isFavourite ? '- UNFAVOURITE' : '+ FAVOURITE' }

@@ -1,0 +1,30 @@
+body {
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-size: 14px;
+}
+
+.rt {
+  &-button {
+    border: 1px solid #1a1a1a;
+    background-color: #1a1a1a;
+    color: #fff;
+    height: 35px;
+    width: 120px;
+
+    &:hover {
+      color: #1a1a1a;
+      background-color: #fff;
+      border: 1px solid #1a1a1a;
+    }
+  }
+
+  &-fade-out {
+    transition: opacity .25s ease-in;
+    -moz-transition: opacity .25s ease-in;
+    -webkit-transition: opacity .25s ease-in;
+
+    :hover {
+      opacity: 0.5;
+    }
+  }
+}
