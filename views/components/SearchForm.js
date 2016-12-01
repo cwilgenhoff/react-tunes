@@ -82,7 +82,7 @@ class SearchForm extends React.Component {
                 type="submit"
                 name="commit"
                 id="search-form-submit"
-                className="rt-button search__form__button"
+                className="rt-button search__form__submit"
               >
                 { this.props.isSearching ? 'SEARCHING...' : 'SEARCH' }
               </button>
